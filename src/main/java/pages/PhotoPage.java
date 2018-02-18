@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.refresh;
@@ -20,14 +21,14 @@ public class PhotoPage {
     choosePhoto = $(By.id("asset_478130948")),
     addPhoto = $x("//a[@class='add-to-board action ng-scope']"),
     goToBoard = $x("//a[@class='button open-board']"),
-    removePhoto = $x("//span[@class='remove']"),
-    addImage = $x("//span[@class='total-asset-count ng-binding']");
+    removePhoto = $x("//span[@class='remove']");
+
 
 
     public void copyPhotoToBoard(){
         menuPhotos.click();
         menuCouplePhotos.click();
-        choosePhoto.click();
+        choosePhoto.shouldBe(visible).click();
         addPhoto.click();
         goToBoard.click();
     }
@@ -40,11 +41,6 @@ public class PhotoPage {
     public void deletePhoto()  {
         choosePhoto.hover();
         removePhoto.click();
-    }
-
-    public String checkButtonAddIsDisplayed(){
-       String check = addImage.getText();
-        return check;
     }
 
 }

@@ -35,7 +35,6 @@ public class EcomUITest extends BaseTestClass {
         photo.copyPhotoToBoard();
         Assert.assertEquals(photo.checkPhotoIsCreated(),"asset_478130948");
         photo.deletePhoto();
-   //     Assert.assertEquals(photo.checkButtonAddIsDisplayed(),"0 files");
         board.deleteMyBoard();
         Assert.assertEquals(board.checkBoardAreDeleted(),"Collect what you love. Start with a search.");
         board.goToMainPage();
