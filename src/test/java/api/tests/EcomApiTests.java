@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by OLEX on 18.02.2018.
@@ -15,7 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class EcomApiTests {
 
     @Test
-    public void findCount() {
+    public void eComTestApi() {
         JsonPath responseJson = given()
                 .when()
                 .get("https://swapi.co/api/people")
@@ -24,16 +25,12 @@ public class EcomApiTests {
 
         List<HashMap> persons = responseJson.getList("results");
 
-
-
         assertThat(responseJson.get("count"), is(87));
-        assertThat(personFromPlanetIsPresent(persons, "Luke Skywalker", "Tatooine"));
+        assertTrue(personFromPlanetIsPresent(persons, "Luke Skywalker", "Tatooine"));
         assertThat(persons.get(0).get("name"), is("Luke Skywalker"));
         assertThat(persons.get(1).get("name"), is("C-3PO"));
         assertThat(persons.get(2).get("name"), is("R2-D2"));
     }
-
-
 
     private boolean personFromPlanetIsPresent(List<HashMap> persons, String personName, String planet) {
         return persons
