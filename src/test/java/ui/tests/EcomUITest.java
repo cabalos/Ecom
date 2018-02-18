@@ -22,7 +22,6 @@ public class EcomUITest extends BaseTestClass {
 
    private BoardPage board;
    private PhotoPage photo;
-   private AutorizationPage autorization;
 
     @DataProvider(name = "browser", parallel = true)
     public Object[][] myBrowsers() {

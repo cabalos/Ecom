@@ -24,10 +24,10 @@ public class AutorizationPage {
     public AutorizationPage() {
     }
 
-    public BoardPage signIn() {
+    public BoardPage signIn(String email, String pass) {
         join.click();
-        inputLogin.val("cabalosos@gmail.com");
-        inputPassword.val("newpass123");
+        inputLogin.val(email);
+        inputPassword.val(pass);
         buttonSignIn.click();
         return new BoardPage();
     }
