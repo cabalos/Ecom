@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class BaseTestClass {
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] testData() {
         return new Object[][]{
                 new Object[]{"c", "cabalosos@gmail.com", "newpass123"},
@@ -34,6 +34,7 @@ public class BaseTestClass {
             browser.start();
             RemoteWebDriver driver = browser.getWebDriver();
             WebDriverRunner.setWebDriver(driver);
+            driver.manage().window().maximize();
         } else {
 
             BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
@@ -41,8 +42,6 @@ public class BaseTestClass {
             browser.start();
             RemoteWebDriver driver = browser.getWebDriver();
             WebDriverRunner.setWebDriver(driver);
-            open("https://www.istockphoto.com");
-            new AutorizationPage().signIn("cabalasos@gmail.com", "newPass456");
         }
     }
 
