@@ -15,7 +15,7 @@ public class BoardPage {
 
     private SelenideElement
     boardMenu = $x("//span[@class='action-label new']"),
-    createBoard =$x("//a[contains(@class, 'create-board-link')]"),
+    createBoard =$x("//a[@class='board-link create-board-link']"),
     popUpForm =$(By.name("form")),
     addBoard = popUpForm.$(By.name("boardname")),
     buttonCreateBoard = popUpForm.$x("//a[@type='submit']"),
@@ -26,7 +26,7 @@ public class BoardPage {
 
 
 public PhotoPage createNewBoard(){
-    boardMenu.hover();
+    boardMenu.hover().click();
     createBoard.hover().shouldBe(visible).click();
     addBoard.shouldBe(visible).val("newBoard");
     buttonCreateBoard.click();
