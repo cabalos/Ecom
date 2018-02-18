@@ -28,8 +28,8 @@ public class EcomUITest extends BaseTestClass {
     public void newTest(String browser,String email,String pass)  {
         openBrowser(browser);
         open("https://www.istockphoto.com");
-        new AutorizationPage().signIn(email, pass);
-        board = new BoardPage();
+        AutorizationPage autorization = new AutorizationPage();
+        board = autorization.signIn(email, pass);
         photo = board.createNewBoard();
         Assert.assertEquals(board.checkBoard(),"newBoard");
         photo.copyPhotoToBoard();
@@ -38,6 +38,6 @@ public class EcomUITest extends BaseTestClass {
         board.deleteMyBoard();
         Assert.assertEquals(board.checkBoardAreDeleted(),"Collect what you love. Start with a search.");
         board.goToMainPage();
-        new AutorizationPage().signOut();
+        autorization.signOut();
     }
 }
