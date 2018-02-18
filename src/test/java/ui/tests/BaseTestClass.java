@@ -3,11 +3,14 @@ package ui.tests;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testcontainers.containers.BrowserWebDriverContainer;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import pages.AutorizationPage;
 
+import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -16,24 +19,35 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class BaseTestClass {
 
+    @DataProvider
+    public Object[][] testData() {
+        return new Object[][]{
+                new Object[]{"c", "cabalosos@gmail.com", "newpass123"},
+                new Object[]{"f", "cabalasos@gmail.com", "newPass456"}
+        };
+    }
+
     public void openBrowser(String param){
         if (param.equalsIgnoreCase("c")) {
-            BrowserWebDriverContainer browser = new BrowserWebDriverContainer();
-            browser.withDesiredCapabilities(DesiredCapabilities.chrome());
+            BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
+                    .withDesiredCapabilities(DesiredCapabilities.chrome());
+            browser.start();
+            RemoteWebDriver driver = browser.getWebDriver();
+            WebDriverRunner.setWebDriver(driver);
+        } else {
+
+            BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
+                    .withDesiredCapabilities(DesiredCapabilities.firefox());
+            browser.start();
+            RemoteWebDriver driver = browser.getWebDriver();
+            WebDriverRunner.setWebDriver(driver);
             open("https://www.istockphoto.com");
-            new AutorizationPage().signIn("cabalosos@gmail.com","newpass123");
+            new AutorizationPage().signIn("cabalasos@gmail.com", "newPass456");
         }
-        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-        System.setProperty("selenide.browser","marionette");
-        FirefoxDriver driver = new FirefoxDriver();
-        WebDriverRunner.setWebDriver(driver);
-        driver.manage().window().maximize();
-        open("https://www.istockphoto.com");
-        new AutorizationPage().signIn("cabalasos@gmail.com","newPass456");
     }
 
     @AfterTest
-    public void teatDown(){
-        close();
+    public void tearDown(){
+
     }
 }
