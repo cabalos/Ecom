@@ -23,14 +23,12 @@ public class EcomUITest extends BaseTestClass {
    private BoardPage board;
    private PhotoPage photo;
 
-    @DataProvider(name = "browser", parallel = true)
-    public Object[][] myBrowsers() {
-        return new Object[][]{{"c"}, {"f"}};
-    }
 
-    @Test(dataProvider = "browser")
-    public void newTest(String browser)  {
+    @Test(dataProvider = "testData")
+    public void newTest(String browser,String email,String pass)  {
         openBrowser(browser);
+        open("https://www.istockphoto.com");
+        new AutorizationPage().signIn(email, pass);
         board = new BoardPage();
         photo = board.createNewBoard();
         Assert.assertEquals(board.checkBoard(),"newBoard");
