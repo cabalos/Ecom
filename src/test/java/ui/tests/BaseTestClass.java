@@ -1,18 +1,13 @@
 package ui.tests;
 
 import com.codeborne.selenide.WebDriverRunner;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testcontainers.containers.BrowserWebDriverContainer;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
-import pages.AutorizationPage;
-
-import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Selenide.close;
-import static com.codeborne.selenide.Selenide.open;
+
 
 /**
  * Created by OLEX on 18.02.2018.
@@ -42,11 +37,12 @@ public class BaseTestClass {
             browser.start();
             RemoteWebDriver driver = browser.getWebDriver();
             WebDriverRunner.setWebDriver(driver);
+            driver.manage().window().maximize();
         }
     }
 
     @AfterTest
     public void tearDown(){
-
+     close();
     }
 }

@@ -33,7 +33,6 @@ public PhotoPage createNewBoard(){
     return new PhotoPage();
 }
 
-
 public String checkBoard(){
     boardMenu.click();
     String boardName = myBoardName.getText();
