@@ -1,4 +1,6 @@
 package api.tests;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Step;
 import io.restassured.path.json.JsonPath;
 
 
@@ -15,14 +17,11 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class EcomApiTests {
 
-    @Test
+    @Epic("API Tests")
+    @Test(description = "Get people & get planet endpoints test")
     public void eComTestApi() {
-        JsonPath responseJson = given()
-                .when()
-                .get("https://swapi.co/api/people")
-                .then()
-                .extract().response().jsonPath();
 
+        JsonPath responseJson = getPersons();
         List<HashMap> persons = responseJson.getList("results");
 
         assertThat(responseJson.get("count"), is(87));
@@ -32,6 +31,16 @@ public class EcomApiTests {
         assertThat(persons.get(2).get("name"), is("R2-D2"));
     }
 
+    @Step("Get list of persons")
+    private JsonPath getPersons() {
+        return given()
+                .when()
+                .get("https://swapi.co/api/people")
+                .then()
+                .extract().response().jsonPath();
+    }
+
+    @Step("Check  {personName} from planet {planet} is present")
     private boolean personFromPlanetIsPresent(List<HashMap> persons, String personName, String planet) {
         return persons
                 .stream()
@@ -39,6 +48,7 @@ public class EcomApiTests {
                 .findFirst().isPresent();
     }
 
+    @Step("Resolve planet name by url")
     private String getPlanetName(Object url) {
 
         return given()
@@ -47,5 +57,4 @@ public class EcomApiTests {
                 .then()
                 .extract().response().jsonPath().getString("name");
     }
-
 }
