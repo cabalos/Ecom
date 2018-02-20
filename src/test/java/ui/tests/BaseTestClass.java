@@ -27,12 +27,14 @@ public class BaseTestClass {
                         .withDesiredCapabilities(DesiredCapabilities.chrome());
                 setDriver(browser);
                 open("https://www.istockphoto.com");
+                break;
             }
             case "firefox": {
                 BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
                         .withDesiredCapabilities(DesiredCapabilities.firefox());
                 setDriver(browser);
                 open("https://www.istockphoto.com");
+                break;
             }
         }
     }
