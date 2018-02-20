@@ -26,23 +26,24 @@ public class BaseTestClass {
         if (param.equalsIgnoreCase("c")) {
             BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
                     .withDesiredCapabilities(DesiredCapabilities.chrome());
-            browser.start();
-            RemoteWebDriver driver = browser.getWebDriver();
-            WebDriverRunner.setWebDriver(driver);
-            driver.manage().window().maximize();
+            browserSettings(browser);
         } else {
 
             BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
                     .withDesiredCapabilities(DesiredCapabilities.firefox());
-            browser.start();
-            RemoteWebDriver driver = browser.getWebDriver();
-            WebDriverRunner.setWebDriver(driver);
-            driver.manage().window().maximize();
+            browserSettings(browser);
         }
+    }
+
+    public void browserSettings(BrowserWebDriverContainer myBrowser){
+        myBrowser.start();
+        RemoteWebDriver driver = myBrowser.getWebDriver();
+        WebDriverRunner.setWebDriver(driver);
+        driver.manage().window().maximize();
     }
 
     @AfterTest
     public void tearDown(){
-     close();
+        close();
     }
 }
