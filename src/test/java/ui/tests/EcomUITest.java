@@ -23,10 +23,10 @@ public class EcomUITest extends BaseTestClass {
         assertEquals(board.checkBoard(),"newBoard");
         photo = new PhotoPage();
         photo.copyPhotoToBoard();
-        assertEquals(photo.checkPhotoIsCreated(),"asset_478130948");
+        assertEquals(photo.checkPhotoByAttributeId(),"asset_478130948");
         photo.deletePhoto();
         board.deleteMyBoard();
-        assertEquals(board.checkBoardAreDeleted(),"Collect what you love. Start with a search.");
+        assertEquals(board.checkMessageAfterBoardDeleted(),"Collect what you love. Start with a search.");
         board.goToMainPage();
         authorization.signOut();
     }

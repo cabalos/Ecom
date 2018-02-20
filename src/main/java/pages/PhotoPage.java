@@ -23,7 +23,7 @@ public class PhotoPage {
     }
 
     @Step
-    public String checkPhotoIsCreated(){
+    public String checkPhotoByAttributeId(){
         return choosePhoto.getAttribute("id");
     }
 

@@ -15,7 +15,7 @@ import static org.testng.AssertJUnit.assertTrue;
 public class EcomApiTests {
 
     @Epic("API Tests")
-    @Test(description = "Get people & get planet endpoints test")
+    @Test(description = "Check people's names and them planet")
     public void eComTestApi() {
         JsonPath responseJson = getPersons();
         List<HashMap> persons = responseJson.getList("results");
@@ -35,8 +35,7 @@ public class EcomApiTests {
                 .then()
                 .statusCode(200)
                 .contentType(JSON)
-                .extract().response().jsonPath()
-                ;
+                .extract().response().jsonPath();
     }
 
     @Step("Check  {personName} from planet {planet} is present")

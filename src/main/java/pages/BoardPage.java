@@ -41,9 +41,8 @@ public class BoardPage {
     }
 
     @Step
-    public String checkBoardAreDeleted(){
-        String message = messageAfterDelete.should(visible).getText();
-        return message;
+    public String checkMessageAfterBoardDeleted(){
+        return messageAfterDelete.should(visible).getText();
     }
 
     public void goToMainPage(){
