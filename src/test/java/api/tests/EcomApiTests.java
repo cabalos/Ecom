@@ -12,9 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.AssertJUnit.assertTrue;
 
-/**
- * Created by OLEX on 18.02.2018.
- */
+
 public class EcomApiTests {
 
     @Epic("API Tests")

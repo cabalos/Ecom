@@ -5,9 +5,7 @@ import static com.codeborne.selenide.Condition.appears;
 import static com.codeborne.selenide.Selenide.$x;
 
 
-/**
- * Created by OLEX on 17.02.2018.
- */
+
 public class PhotoPage {
     private SelenideElement
             menuPhotos = $x("//ul/li/a[@data-nav='nav=nav_Photos']"),
@@ -16,8 +14,6 @@ public class PhotoPage {
             addPhoto = $x("//a[@class='add-to-board action ng-scope']"),
             goToBoard = $x("//a[@class='button open-board']"),
             removePhoto = $x("//span[@class='remove']");
-
-
 
     public void copyPhotoToBoard(){
         menuPhotos.click();
@@ -28,8 +24,7 @@ public class PhotoPage {
     }
 
     public String checkPhotoIsCreated(){
-        String id = choosePhoto.getAttribute("id");
-        return id;
+        return choosePhoto.getAttribute("id");
     }
 
     public void deletePhoto()  {

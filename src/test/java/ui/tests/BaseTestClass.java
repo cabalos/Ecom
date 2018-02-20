@@ -9,9 +9,7 @@ import org.testng.annotations.DataProvider;
 import static com.codeborne.selenide.Selenide.close;
 
 
-/**
- * Created by OLEX on 18.02.2018.
- */
+
 public class BaseTestClass {
 
     @DataProvider(parallel = true)

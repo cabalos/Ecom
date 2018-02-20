@@ -6,10 +6,8 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-/**
- * Created by OLEX on 17.02.2018.
- */
-public class AutorizationPage {
+
+public class AuthorizationPage {
 
     private SelenideElement
             join = $x("//li/a[@data-nav='nav=nav_SignIn']"),
@@ -19,12 +17,11 @@ public class AutorizationPage {
             buttonAccount = $x("//li[@class='wide-header right-off-canvas-toggle-menu']"),
             buttonSignOut = $(By.id("hypSignOut"));
 
-    public BoardPage signIn(String email, String pass) {
+    public void signIn(String email, String pass) {
         join.click();
         inputLogin.val(email);
         inputPassword.val(pass);
         buttonSignIn.click();
-        return new BoardPage();
     }
 
     public void signOut(){

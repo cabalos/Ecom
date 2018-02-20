@@ -8,9 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.confirm;
 
-/**
- * Created by OLEX on 17.02.2018.
- */
+
 public class BoardPage {
 
     private SelenideElement
@@ -24,19 +22,16 @@ public class BoardPage {
             messageAfterDelete = $x("//h4[@class='message']"),
             mainPage = $x("//img[@alt='iStock logo']");
 
-    public PhotoPage createNewBoard(){
+    public void createNewBoard(){
         boardMenu.click();
         createBoard.hover().click();
         addBoard.shouldBe(visible).val("newBoard");
         buttonCreateBoard.click();
-        return new PhotoPage();
     }
-
 
     public String checkBoard(){
         boardMenu.click();
-        String boardName = myBoardName.shouldBe(exist).getText();
-        return  boardName;
+        return myBoardName.shouldBe(exist).getText();
     }
 
     public void deleteMyBoard(){
