@@ -22,7 +22,7 @@ public class PhotoPage {
     public void copyPhotoToBoard(){
         menuPhotos.click();
         menuCouplePhotos.click();
-        choosePhoto.waitUntil(appears,3000).click();
+        choosePhoto.click();
         addPhoto.click();
         goToBoard.click();
     }
