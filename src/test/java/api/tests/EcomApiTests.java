@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.List;
 import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.AssertJUnit.assertTrue;
@@ -18,7 +19,6 @@ public class EcomApiTests {
     @Epic("API Tests")
     @Test(description = "Get people & get planet endpoints test")
     public void eComTestApi() {
-
         JsonPath responseJson = getPersons();
         List<HashMap> persons = responseJson.getList("results");
 
@@ -35,7 +35,10 @@ public class EcomApiTests {
                 .when()
                 .get("https://swapi.co/api/people")
                 .then()
-                .extract().response().jsonPath();
+                .statusCode(200)
+                .contentType(JSON)
+                .extract().response().jsonPath()
+                ;
     }
 
     @Step("Check  {personName} from planet {planet} is present")
@@ -48,11 +51,12 @@ public class EcomApiTests {
 
     @Step("Resolve planet name by url")
     private String getPlanetName(Object url) {
-
         return given()
                 .when()
                 .get(url.toString())
                 .then()
+                .statusCode(200)
+                .contentType(JSON)
                 .extract().response().jsonPath().getString("name");
     }
 }

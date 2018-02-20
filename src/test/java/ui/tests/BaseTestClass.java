@@ -15,18 +15,17 @@ public class BaseTestClass {
     @DataProvider(parallel = true)
     public Object[][] testData() {
         return new Object[][]{
-                new Object[]{"c", "cabalosos@gmail.com", "newpass123"},
-                new Object[]{"f", "cabalasos@gmail.com", "newPass456"}
+                new Object[]{"chrome", "cabalosos@gmail.com", "newpass123"},
+                new Object[]{"firefox", "cabalasos@gmail.com", "newPass456"}
         };
     }
 
     public void openBrowser(String param){
-        if (param.equalsIgnoreCase("c")) {
+        if (param.equals("chrome")) {
             BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
                     .withDesiredCapabilities(DesiredCapabilities.chrome());
             browserSettings(browser);
         } else {
-
             BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
                     .withDesiredCapabilities(DesiredCapabilities.firefox());
             browserSettings(browser);
