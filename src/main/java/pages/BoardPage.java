@@ -1,16 +1,14 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.confirm;
 
-
 public class BoardPage {
-
     private SelenideElement
             boardMenu = $x("//span[@class='action-label new']"),
             createBoard =$x("//a[@class='board-link create-board-link']"),
@@ -22,6 +20,7 @@ public class BoardPage {
             messageAfterDelete = $x("//h4[@class='message']"),
             mainPage = $x("//img[@alt='iStock logo']");
 
+    @Step
     public void createNewBoard(){
         boardMenu.click();
         createBoard.hover().click();
@@ -29,16 +28,19 @@ public class BoardPage {
         buttonCreateBoard.click();
     }
 
+    @Step
     public String checkBoard(){
         boardMenu.click();
         return myBoardName.shouldBe(exist).getText();
     }
 
+    @Step
     public void deleteMyBoard(){
         deleteBoard.click();
         confirm("Are you sure you want to delete this Board?");
     }
 
+    @Step
     public String checkBoardAreDeleted(){
         String message = messageAfterDelete.should(visible).getText();
         return message;

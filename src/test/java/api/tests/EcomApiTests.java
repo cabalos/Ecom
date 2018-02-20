@@ -2,8 +2,6 @@ package api.tests;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
 import io.restassured.path.json.JsonPath;
-
-
 import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.List;

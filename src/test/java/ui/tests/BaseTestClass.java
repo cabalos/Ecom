@@ -7,7 +7,7 @@ import org.testcontainers.containers.BrowserWebDriverContainer;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 import static com.codeborne.selenide.Selenide.close;
-
+import static com.codeborne.selenide.Selenide.open;
 
 
 public class BaseTestClass {
@@ -20,21 +20,26 @@ public class BaseTestClass {
         };
     }
 
-    public void openBrowser(String param){
-        if (param.equals("chrome")) {
-            BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
-                    .withDesiredCapabilities(DesiredCapabilities.chrome());
-            browserSettings(browser);
-        } else {
-            BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
-                    .withDesiredCapabilities(DesiredCapabilities.firefox());
-            browserSettings(browser);
+    public void openBrowser(String param) {
+        switch (param) {
+            case "chrome": {
+                BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
+                        .withDesiredCapabilities(DesiredCapabilities.chrome());
+                setDriver(browser);
+                open("https://www.istockphoto.com");
+            }
+            case "firefox": {
+                BrowserWebDriverContainer browser = new BrowserWebDriverContainer()
+                        .withDesiredCapabilities(DesiredCapabilities.firefox());
+                setDriver(browser);
+                open("https://www.istockphoto.com");
+            }
         }
     }
 
-    public void browserSettings(BrowserWebDriverContainer myBrowser){
-        myBrowser.start();
-        RemoteWebDriver driver = myBrowser.getWebDriver();
+    public void setDriver(BrowserWebDriverContainer browser){
+        browser.start();
+        RemoteWebDriver driver = browser.getWebDriver();
         WebDriverRunner.setWebDriver(driver);
         driver.manage().window().maximize();
     }

@@ -1,10 +1,8 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.Condition.appears;
+import io.qameta.allure.Step;
 import static com.codeborne.selenide.Selenide.$x;
-
-
 
 public class PhotoPage {
     private SelenideElement
@@ -15,6 +13,7 @@ public class PhotoPage {
             goToBoard = $x("//a[@class='button open-board']"),
             removePhoto = $x("//span[@class='remove']");
 
+    @Step
     public void copyPhotoToBoard(){
         menuPhotos.click();
         menuCouplePhotos.click();
@@ -23,10 +22,12 @@ public class PhotoPage {
         goToBoard.click();
     }
 
+    @Step
     public String checkPhotoIsCreated(){
         return choosePhoto.getAttribute("id");
     }
 
+    @Step
     public void deletePhoto()  {
         choosePhoto.hover();
         removePhoto.click();
