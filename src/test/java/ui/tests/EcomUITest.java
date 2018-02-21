@@ -14,7 +14,7 @@ public class EcomUITest extends BaseTestClass {
 
     @Epic("UI Tests")
     @Test(dataProvider = "testData")
-    public void TestIstockphoto(String browser,String email,String pass)  {
+    public void check_Istockphoto_UI(String browser,String email,String pass)  {
         openBrowser(browser);
         authorization = new AuthorizationPage();
         authorization.signIn(email, pass);
